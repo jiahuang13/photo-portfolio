@@ -17,7 +17,6 @@ const routes = [
       { path: "/portrait", component: () => import("@/views/portrait.vue") },
       { path: "/landscape", component: () => import("@/views/landscape.vue") },
       { path: "/about", component: () => import("@/views/about.vue") },
-      { path: "/contact", component: () => import("@/views/contact.vue") },
       {
         path: "/album/:id",
         component: () => import("@/views/album.vue"),

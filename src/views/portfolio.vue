@@ -1,9 +1,9 @@
 <template>
   <div class="portfolio">
     <el-row :gutter="120">
-      <h1 class="title"><span>黃佳美</span> Jia Huang</h1>
+      <h1 class="title"><span>黃佳</span> Jia Huang</h1>
       <p class="title">Photography</p>
-      <el-col :span="isMobile ? 18 : 0" :offset="isMobile ? 3 : 0">
+      <el-col :span="isMobile ? 20 : 0" :offset="isMobile ? 2 : 2">
         <!-- 在手机屏幕上显示一列 -->
         <transition-group name="fade">
           <div
@@ -79,7 +79,7 @@ export default {
   },
   methods: {
     checkScreenWidth() {
-      this.isMobile = window.innerWidth < 768; // 设置手机屏幕的阈值，例如768px
+      this.isMobile = window.innerWidth < 992; // 设置手机屏幕的阈值，例如768px
     },
   },
 };
@@ -95,7 +95,7 @@ export default {
     margin: 100px auto 10px;
     font-weight: normal;
     letter-spacing: 2px;
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 992px) {
       /* 手機版 */
       top: 150px;
     }
