@@ -69,23 +69,27 @@
         <el-drawer :visible.sync="drawerVisible" direction="rtl" size="100%">
           <!-- 漢堡選單内容 -->
           <el-menu>
-            <el-submenu index="2" @click.native="$router.push('/')">
+            <el-submenu index="2" @click.native="handleMobileNavClick('/')">
               <template slot="title">Portfolio</template>
-              <el-menu-item index="2-1" @click.native="$router.push('/wedding')"
+              <el-menu-item
+                index="2-1"
+                @click.native="handleMobileNavClick('/wedding')"
                 >Wedding</el-menu-item
               >
               <el-menu-item
                 index="2-2"
-                @click.native="$router.push('/portrait')"
+                @click.native="handleMobileNavClick('/portrait')"
                 >Portrait</el-menu-item
               >
               <el-menu-item
                 index="2-3"
-                @click.native="$router.push('/landscape')"
+                @click.native="handleMobileNavClick('/landscape')"
                 >Landscape</el-menu-item
               >
             </el-submenu>
-            <el-menu-item index="3" @click.native="$router.push('/about')"
+            <el-menu-item
+              index="3"
+              @click.native="handleMobileNavClick('/about')"
               >About</el-menu-item
             >
             <el-menu-item index="3"
@@ -147,6 +151,10 @@ export default {
     // 切换漢堡選單抽屉的显示状态
     toggleDrawer() {
       this.drawerVisible = !this.drawerVisible;
+    },
+    handleMobileNavClick(url) {
+      this.$router.push(url);
+      this.drawerVisible = false;
     },
   },
 };
