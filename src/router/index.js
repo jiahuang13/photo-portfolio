@@ -16,6 +16,7 @@ const routes = [
       { path: "/about", component: () => import("@/views/about.vue") },
       {
         path: "/album/:id",
+        name: "album",
         component: () => import("@/views/album.vue"),
       },
     ],

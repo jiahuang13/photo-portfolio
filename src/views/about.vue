@@ -3,7 +3,7 @@
     <el-row :gutter="120">
       <h1 class="title"><span>黃佳</span> Jia Huang</h1>
       <p class="title">Photography</p>
-      <el-col :span="isMobile ? 20 : 0" :offset="isMobile ? 2 : 0">
+      <el-col :span="isMobile ? 22 : 0" :offset="isMobile ? 1 : 0">
         <!-- 在手机屏幕上显示一列 -->
         <transition name="fade">
           <div class="paragraph">
@@ -46,13 +46,13 @@
         </transition>
       </el-col>
       <!-- 在大屏幕上显示两列 -->
-      <el-col :span="isMobile ? 0 : 8" :offset="isMobile ? 0 : 4">
+      <el-col :span="isMobile ? 0 : 10" :offset="isMobile ? 0 : 2">
         <transition name="fade">
           <div class="paragraph">
             <h2>About Me</h2>
             <p>
-              1997年出生，台灣台南人，金牛座，育有一貓。
-              <br />拍攝婚禮20+場。 <br />各式拍攝合作委託歡迎內洽。
+              1997 年出生，台灣台南人，金牛座，育有一貓。
+              <br />拍攝婚禮 20+ 場。 <br />各式拍攝合作委託歡迎內洽。
             </p>
             <p class="eng">
               Born in 1997, a native of Tainan, Taiwan, under the zodiac sign of
@@ -83,7 +83,7 @@
           </div>
         </transition>
       </el-col>
-      <el-col :span="isMobile ? 0 : 8">
+      <el-col :span="isMobile ? 0 : 10">
         <transition name="fade">
           <div class="paragraph">
             <el-image
@@ -124,6 +124,11 @@ export default {
 .about {
   margin-top: 100px;
   margin-bottom: 200px;
+  .el-row {
+    max-width: 100%;
+    margin-left: 0 !important;
+    margin-right: -30px !important;
+  }
   .el-col .el-col-20 .el-col-offset-2 {
     padding-right: 0 !important;
   }

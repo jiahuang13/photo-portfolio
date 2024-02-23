@@ -4,6 +4,7 @@
       <h1 class="title"><span>黃佳</span> Jia Huang</h1>
       <p class="title">Photography</p>
       <div class="btns">
+        <el-button @click="showall">All</el-button>
         <el-button @click="handleClick(1)">Wedding</el-button>
         <el-button @click="handleClick(2)">Portrait</el-button>
         <el-button @click="handleClick(3)">Landscape</el-button>
@@ -54,6 +55,7 @@
         </transition-group>
       </el-col>
     </el-row>
+    <el-backtop :bottom="50" :visibility-height="50"></el-backtop>
   </div>
 </template>
 
@@ -79,8 +81,8 @@ export default {
   },
   async created() {
     const res = await getAllAlbumAPI();
-    this.list = res;
-    this.originalList = [...res];
+    this.originalList = res;
+    this.list = [...res];
   },
   mounted() {
     this.checkScreenWidth();
@@ -106,6 +108,9 @@ export default {
         ele.category.includes(category)
       );
     },
+    showall() {
+      this.list = this.originalList;
+    },
   },
 };
 </script>
@@ -124,14 +129,12 @@ export default {
       font-family: "Urbanist";
       transition: all 0.5s;
       border-radius: 0;
-      flex-basis: calc(20% - 10px); /* 設置每個按鈕的寬度，減去間距 */
+      flex-basis: calc(10% - 10px); /* 設置每個按鈕的寬度，減去間距 */
       margin: 5px; /* 按鈕間的間距 */
     }
     @media screen and (max-width: 460px) {
       .el-button {
-        flex-basis: calc(
-          40% - 10px
-        ); /* 螢幕寬度小於 460px 時，按鈕寬度設置為100%，減去間距 */
+        flex-basis: calc(50% - 10px);
       }
     }
   }

@@ -5,7 +5,7 @@
       <p class="title">{{ albuminfo }}</p>
       <el-col :span="isMobile ? 22 : 0" :offset="isMobile ? 1 : 0">
         <!-- 在手机屏幕上显示一列 -->
-        <div class="item">
+        <div class="item" v-loading="loading">
           <transition-group name="fade">
             <el-image
               v-for="item in list"
@@ -19,10 +19,10 @@
       </el-col>
       <!-- 在大屏幕上显示两列 -->
       <el-col :span="isMobile ? 0 : 10" :offset="isMobile ? 0 : 2">
-        <div class="item">
+        <div class="item" v-loading="loading">
           <transition-group name="fade">
             <el-image
-              v-for="item in list1"
+              v-for="item in oddList"
               :key="item.id"
               style="width: 100%; height: auto"
               :src="item.url"
@@ -32,10 +32,10 @@
         </div>
       </el-col>
       <el-col :span="isMobile ? 0 : 10">
-        <div class="item">
+        <div class="item" v-loading="loading">
           <transition-group name="fade">
             <el-image
-              v-for="item in list2"
+              v-for="item in evenList"
               :key="item.id"
               style="width: 100%; height: auto"
               :src="item.url"
@@ -44,10 +44,14 @@
           </transition-group>
         </div>
       </el-col>
-      <el-link class="arrow"
+      <el-link
+        class="arrow"
+        @click="nextProject"
+        v-if="+this.$route.params.id < 10"
         >Next Project <i class="el-icon-right"></i>
       </el-link>
     </el-row>
+    <el-backtop :bottom="50" :visibility-height="50"></el-backtop>
   </div>
 </template>
 
@@ -60,23 +64,31 @@ export default {
     return {
       isMobile: false,
       list: [],
-      list1: [],
-      list2: [],
       albumname: "",
       albuminfo: "",
+      loading: true,
     };
+  },
+  computed: {
+    oddList() {
+      return this.list.filter((_, index) => index % 2 === 0);
+    },
+    evenList() {
+      return this.list.filter((_, index) => index % 2 !== 0);
+    },
   },
   async created() {
     const res = await getAlbumAPI(this.$route.params.id);
-    this.list = res.photos;
-    this.list1 = res.photos.filter((_, index) => index % 2 === 0); // 偶数项
-    this.list2 = res.photos.filter((_, index) => index % 2 !== 0); // 奇数项
+    this.list = [...res.photos];
     this.albumname = res.name;
     this.albuminfo = res.info;
   },
   mounted() {
     this.checkScreenWidth();
     window.addEventListener("resize", this.checkScreenWidth);
+    setTimeout(() => {
+      this.loading = false;
+    }, 2500);
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.checkScreenWidth);
@@ -84,6 +96,12 @@ export default {
   methods: {
     checkScreenWidth() {
       this.isMobile = window.innerWidth < 768; // 设置手机屏幕的阈值，例如768px
+    },
+    nextProject() {
+      const newid = +this.$route.params.id + 1;
+      // this.$router.push({ name: "album", params: { id: newid } });
+      this.$router.push(`album/${newid}`);
+      location.reload();
     },
   },
 };
@@ -110,7 +128,7 @@ export default {
   }
   .fade-enter-active,
   .fade-leave-active {
-    transition: opacity 0.5s ease;
+    transition: opacity 1s ease;
   }
 
   .fade-enter,
