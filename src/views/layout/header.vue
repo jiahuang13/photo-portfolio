@@ -29,19 +29,10 @@
           active-text-color="#92d99e"
         >
           <!-- 导航栏内容 -->
-          <el-submenu index="2" @click.native="$router.push('/')">
-            <template slot="title">Portfolio</template>
-            <el-menu-item index="2-1" @click.native="$router.push('/wedding')"
-              >Wedding</el-menu-item
-            >
-            <el-menu-item index="2-2" @click.native="$router.push('/portrait')"
-              >Portrait</el-menu-item
-            >
-            <el-menu-item index="2-3" @click.native="$router.push('/landscape')"
-              >Landscape</el-menu-item
-            >
-          </el-submenu>
-          <el-menu-item index="3" @click.native="$router.push('/about')"
+          <el-menu-item index="1" @click.native="$router.push('/')"
+            >Portfolio</el-menu-item
+          >
+          <el-menu-item index="2" @click.native="$router.push('/about')"
             >About</el-menu-item
           >
         </el-menu>
@@ -69,27 +60,10 @@
         <el-drawer :visible.sync="drawerVisible" direction="rtl" size="100%">
           <!-- 漢堡選單内容 -->
           <el-menu>
-            <el-submenu index="2" @click.native="handleMobileNavClick('/')">
-              <template slot="title">Portfolio</template>
-              <el-menu-item
-                index="2-1"
-                @click.native="handleMobileNavClick('/wedding')"
-                >Wedding</el-menu-item
-              >
-              <el-menu-item
-                index="2-2"
-                @click.native="handleMobileNavClick('/portrait')"
-                >Portrait</el-menu-item
-              >
-              <el-menu-item
-                index="2-3"
-                @click.native="handleMobileNavClick('/landscape')"
-                >Landscape</el-menu-item
-              >
-            </el-submenu>
-            <el-menu-item
-              index="3"
-              @click.native="handleMobileNavClick('/about')"
+            <el-menu-item index="1" @click.native="handleClick('/')"
+              >Portfolio</el-menu-item
+            >
+            <el-menu-item index="2" @click.native="handleClick('/about')"
               >About</el-menu-item
             >
             <el-menu-item index="3"
@@ -152,8 +126,8 @@ export default {
     toggleDrawer() {
       this.drawerVisible = !this.drawerVisible;
     },
-    handleMobileNavClick(url) {
-      this.$router.push(url);
+    async handleClick(url) {
+      await this.$router.push({ path: url });
       this.drawerVisible = false;
     },
   },
@@ -192,7 +166,6 @@ export default {
       border-color: transparent;
       display: flex;
       justify-content: center;
-      padding-right: 40px;
       padding-top: 20px;
     }
   }

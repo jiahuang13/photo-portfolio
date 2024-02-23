@@ -1,9 +1,9 @@
 <template>
-  <div class="portfolio">
+  <div class="about">
     <el-row :gutter="120">
       <h1 class="title"><span>黃佳</span> Jia Huang</h1>
       <p class="title">Photography</p>
-      <el-col :span="isMobile ? 20 : 0" :offset="isMobile ? 2 : 2">
+      <el-col :span="isMobile ? 20 : 0" :offset="isMobile ? 2 : 0">
         <!-- 在手机屏幕上显示一列 -->
         <transition name="fade">
           <div class="paragraph">
@@ -99,7 +99,7 @@
 
 <script>
 export default {
-  name: "AlbumPage",
+  name: "AboutPage",
   data() {
     return {
       isMobile: false,
@@ -121,9 +121,12 @@ export default {
 </script>
 
 <style>
-.portfolio {
+.about {
   margin-top: 100px;
   margin-bottom: 200px;
+  .el-col .el-col-20 .el-col-offset-2 {
+    padding-right: 0 !important;
+  }
   h1.title {
     /* font-weight: 100; */
     font-size: 20px;
@@ -157,6 +160,7 @@ export default {
     h2,
     p {
       margin-bottom: 40px;
+      max-width: 100%;
     }
     h2 {
       margin-top: 30px;

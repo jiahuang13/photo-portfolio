@@ -1,9 +1,15 @@
 <template>
   <div class="portfolio">
-    <el-row :gutter="120">
+    <el-row :gutter="60">
       <h1 class="title"><span>黃佳</span> Jia Huang</h1>
       <p class="title">Photography</p>
-      <el-col :span="isMobile ? 20 : 0" :offset="isMobile ? 2 : 2">
+      <div class="btns">
+        <el-button @click="handleClick(1)">Wedding</el-button>
+        <el-button @click="handleClick(2)">Portrait</el-button>
+        <el-button @click="handleClick(3)">Landscape</el-button>
+        <el-button @click="handleClick(4)">Travel</el-button>
+      </div>
+      <el-col :span="isMobile ? 20 : 0" :offset="isMobile ? 2 : 0">
         <!-- 在手机屏幕上显示一列 -->
         <transition-group name="fade">
           <div
@@ -23,7 +29,7 @@
         <transition-group name="fade">
           <div
             class="item"
-            v-for="item in list1"
+            v-for="item in oddList"
             :key="item.id"
             v-on:click="$router.push(`/album/${item.id}`)"
           >
@@ -37,7 +43,7 @@
         <transition-group name="fade">
           <div
             class="item"
-            v-for="item in list2"
+            v-for="item in evenList"
             :key="item.id"
             v-on:click="$router.push(`/album/${item.id}`)"
           >
@@ -60,15 +66,21 @@ export default {
     return {
       isMobile: false,
       list: [],
-      list1: [],
-      list2: [],
+      originalList: [],
     };
+  },
+  computed: {
+    oddList() {
+      return this.list.filter((_, index) => index % 2 === 0);
+    },
+    evenList() {
+      return this.list.filter((_, index) => index % 2 !== 0);
+    },
   },
   async created() {
     const res = await getAllAlbumAPI();
     this.list = res;
-    this.list1 = res.filter((_, index) => index % 2 === 0); // 偶数项
-    this.list2 = res.filter((_, index) => index % 2 !== 0); // 奇数项
+    this.originalList = [...res];
   },
   mounted() {
     this.checkScreenWidth();
@@ -81,6 +93,19 @@ export default {
     checkScreenWidth() {
       this.isMobile = window.innerWidth < 992; // 设置手机屏幕的阈值，例如768px
     },
+    handleClick(id) {
+      this.list = [...this.originalList];
+      const map = {
+        1: "wedding",
+        2: "portrait",
+        3: "landscape",
+        4: "travel",
+      };
+      const category = map[id];
+      this.list = this.originalList.filter((ele) =>
+        ele.category.includes(category)
+      );
+    },
   },
 };
 </script>
@@ -89,10 +114,36 @@ export default {
 .portfolio {
   margin-top: 100px;
   margin-bottom: 200px;
+  text-align: center;
+  .btns {
+    margin-bottom: 60px;
+    display: flex;
+    flex-wrap: wrap; /* 允許按需要換行 */
+    justify-content: center; /* 水平居中 */
+    .el-button {
+      font-family: "Urbanist";
+      transition: all 0.5s;
+      border-radius: 0;
+      flex-basis: calc(20% - 10px); /* 設置每個按鈕的寬度，減去間距 */
+      margin: 5px; /* 按鈕間的間距 */
+    }
+    @media screen and (max-width: 460px) {
+      .el-button {
+        flex-basis: calc(
+          40% - 10px
+        ); /* 螢幕寬度小於 460px 時，按鈕寬度設置為100%，減去間距 */
+      }
+    }
+  }
+  .el-row {
+    max-width: 100%;
+    margin-left: 0 !important;
+    margin-right: -30px !important;
+  }
   h1.title {
     /* font-weight: 100; */
     font-size: 20px;
-    margin: 100px auto 10px;
+    margin: 60px auto 10px auto;
     font-weight: normal;
     letter-spacing: 2px;
     @media screen and (max-width: 992px) {
@@ -102,7 +153,7 @@ export default {
   }
   p.title {
     letter-spacing: 2px;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
   }
   .fade-enter-active,
   .fade-leave-active {
