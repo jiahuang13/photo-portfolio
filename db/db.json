@@ -1,4 +1,8 @@
-{
+{"routes": {
+  "/albums": {
+    "middleware": "cors"
+  }
+},
   "album": [
     {
       "id": "1",

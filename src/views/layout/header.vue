@@ -150,10 +150,11 @@ export default {
       border-bottom-color: rgb(146, 217, 158) !important;
       background-color: rgb(255, 255, 255) !important;
     }
-    .logo {
-      position: absolute;
-      top: 10px;
-      left: 40px;
+    h1.logo {
+      display: inline-block !important;
+      position: absolute !important;
+      top: 10px !important;
+      left: 40px !important;
       z-index: 5;
       font-size: 25px;
       cursor: pointer;
@@ -188,7 +189,6 @@ export default {
     .burger {
       width: 24px; /* SVG 图标的宽度 */
       height: 24px; /* SVG 图标的高度 */
-      fill: #92d99e; /* SVG 图标的颜色 */
       position: absolute;
       top: 20px;
       right: 20px;

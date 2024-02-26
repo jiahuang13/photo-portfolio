@@ -82,6 +82,7 @@ export default {
   },
   async created() {
     const res = await getAllAlbumAPI();
+    console.log(res);
     this.originalList = res;
     this.list = [...res];
   },
@@ -144,18 +145,20 @@ export default {
     max-width: 100%;
     margin-left: 0 !important;
     margin-right: -30px !important;
-  }
-  h1.title {
-    /* font-weight: 100; */
-    font-size: 20px;
-    margin: 60px auto 10px auto;
-    font-weight: normal;
-    letter-spacing: 2px;
-    @media screen and (max-width: 992px) {
-      /* 手機版 */
-      top: 150px;
+    h1.title {
+      /* font-weight: 100; */
+      font-size: 20px !important;
+      margin: 60px auto 10px auto !important;
+      font-weight: normal !important;
+      letter-spacing: 2px;
+      @media screen and (max-width: 992px) {
+        /* 手機版 */
+        top: 150px !important;
+        font-size: 20px;
+      }
     }
   }
+
   p.title {
     letter-spacing: 2px;
     margin-bottom: 60px;
