@@ -13,6 +13,7 @@
               style="width: 100%; height: auto"
               :src="item.url"
               :preview-src-list="[item.url]"
+              @click="picClick(item.id)"
             />
           </transition-group>
         </div>
@@ -27,6 +28,7 @@
               style="width: 100%; height: auto"
               :src="item.url"
               :preview-src-list="[item.url]"
+              @click="picClick(item.id)"
             />
           </transition-group>
         </div>
@@ -40,6 +42,7 @@
               style="width: 100%; height: auto"
               :src="item.url"
               :preview-src-list="[item.url]"
+              @click="picClick(item.id)"
             />
           </transition-group>
         </div>
@@ -103,6 +106,9 @@ export default {
       this.$router.push(`album/${newid}`);
       location.reload();
     },
+    picClick(id) {
+      console.log(id);
+    },
   },
 };
 </script>
@@ -128,7 +134,7 @@ export default {
   }
   .fade-enter-active,
   .fade-leave-active {
-    transition: opacity 1s ease;
+    transition: opacity 2s all;
   }
 
   .fade-enter,

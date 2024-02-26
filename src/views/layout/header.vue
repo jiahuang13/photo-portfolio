@@ -144,6 +144,12 @@ export default {
     background-color: #fff;
     z-index: 5;
     top: 0;
+    li.el-menu-item:hover,
+    li.el-menu-item:focus {
+      color: rgb(146, 217, 158) !important;
+      border-bottom-color: rgb(146, 217, 158) !important;
+      background-color: rgb(255, 255, 255) !important;
+    }
     .logo {
       position: absolute;
       top: 10px;

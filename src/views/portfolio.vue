@@ -8,7 +8,8 @@
         <el-button @click="handleClick(1)">Wedding</el-button>
         <el-button @click="handleClick(2)">Portrait</el-button>
         <el-button @click="handleClick(3)">Landscape</el-button>
-        <el-button @click="handleClick(4)">Travel</el-button>
+        <el-button @click="handleClick(4)">Life</el-button>
+        <el-button @click="handleClick(5)">Event</el-button>
       </div>
       <el-col :span="isMobile ? 20 : 0" :offset="isMobile ? 2 : 0">
         <!-- 在手机屏幕上显示一列 -->
@@ -101,7 +102,8 @@ export default {
         1: "wedding",
         2: "portrait",
         3: "landscape",
-        4: "travel",
+        4: "life",
+        5: "event",
       };
       const category = map[id];
       this.list = this.originalList.filter((ele) =>
