@@ -171,9 +171,9 @@ export default {
       background-color: rgb(255, 255, 255) !important;
     }
     .logo {
-      position: absolute !important;
-      top: 10px !important;
-      left: 40px !important;
+      position: absolute;
+      top: 10px;
+      left: 40px;
       z-index: 5;
       font-size: 25px;
       cursor: pointer;
