@@ -2,6 +2,7 @@ const express = require("express");
 const https = require("https");
 const fs = require("fs");
 const jsonServer = require("json-server");
+const morgan = require("morgan");
 
 const app = express();
 const serverOptions = {
@@ -9,7 +10,13 @@ const serverOptions = {
   cert: fs.readFileSync("./db/localhost.crt"),
 };
 
-const router = jsonServer.router("./path/to/db.json");
+// 创建一个写入日志文件的 stream 对象
+const accessLogStream = fs.createWriteStream("./access.log", { flags: "a" });
+
+// 使用 morgan 中间件记录日志
+app.use(morgan("combined", { stream: accessLogStream }));
+
+const router = jsonServer.router("./db/db.json");
 const middlewares = jsonServer.defaults();
 
 app.use(middlewares);
