@@ -1,8 +1,25 @@
 <template>
   <div class="portfolio">
     <el-row :gutter="60">
-      <h1 class="title"><span>黃佳</span> Jia Huang</h1>
-      <p class="title">Photography</p>
+      <div
+        class="title"
+        style="
+          font-size: 20px !important;
+          margin: 60px auto 10px auto !important;
+          font-weight: normal !important;
+          letter-spacing: 2px;
+          @media screen and (max-width: 992px) {
+            /* 手機版 */
+            top: 150px !important;
+            font-size: 20px;
+          }
+        "
+      >
+        <span>黃佳</span> Jia Huang
+      </div>
+      <p class="title" style="letter-spacing: 2px; margin-bottom: 60px">
+        Photography
+      </p>
       <div class="btns">
         <el-button @click="showall">All</el-button>
         <el-button @click="handleClick(1)">Wedding</el-button>
@@ -145,20 +162,19 @@ export default {
     max-width: 100%;
     margin-left: 0 !important;
     margin-right: -30px !important;
-    h1.title {
-      /* font-weight: 100; */
-      font-size: 20px !important;
-      margin: 60px auto 10px auto !important;
-      font-weight: normal !important;
-      letter-spacing: 2px;
-      @media screen and (max-width: 992px) {
-        /* 手機版 */
-        top: 150px !important;
-        font-size: 20px;
-      }
+  }
+  div.title {
+    /* font-weight: 100; */
+    font-size: 20px !important;
+    margin: 60px auto 10px auto !important;
+    font-weight: normal !important;
+    letter-spacing: 2px;
+    @media screen and (max-width: 992px) {
+      /* 手機版 */
+      top: 150px !important;
+      font-size: 20px;
     }
   }
-
   p.title {
     letter-spacing: 2px;
     margin-bottom: 60px;

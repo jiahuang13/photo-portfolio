@@ -3,11 +3,25 @@
     <el-row>
       <!-- 在大屏幕上显示导航栏 -->
       <el-col :span="navbarVisible ? 24 : 0" class="desk-navbar">
-        <h1 class="logo" v-on:click="$router.push('/')">J.Huang</h1>
+        <div
+          class="logo"
+          v-on:click="$router.push('/')"
+          style="
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            font-size: 25px;
+            z-index: 10;
+            font-weight: 700;
+          "
+        >
+          J.Huang
+        </div>
         <a
           class="ig"
           href="https://www.instagram.com/pslms16_6/"
           target="_blank"
+          style="position: absolute; top: 40px; right: 40px; z-index: 5"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -27,6 +41,12 @@
           background-color="#fff"
           text-color="#32823f"
           active-text-color="#92d99e"
+          style="
+            border-color: transparent;
+            display: flex;
+            justify-content: center;
+            padding-top: 20px;
+          "
         >
           <!-- 导航栏内容 -->
           <el-menu-item index="1" @click.native="$router.push('/')"
@@ -150,8 +170,7 @@ export default {
       border-bottom-color: rgb(146, 217, 158) !important;
       background-color: rgb(255, 255, 255) !important;
     }
-    h1.logo {
-      display: inline-block !important;
+    .logo {
       position: absolute !important;
       top: 10px !important;
       left: 40px !important;
