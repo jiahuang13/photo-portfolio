@@ -1,8 +1,4 @@
-{"routes": {
-  "/albums": {
-    "middleware": "cors"
-  }
-},
+{
   "album": [
     {
       "id": "1",
@@ -740,6 +736,62 @@
         { "id": "18", "url": "https://i.imgur.com/Ac9GTBn.jpg" },
         { "id": "19", "url": "https://i.imgur.com/YbVgTXb.jpg" },
         { "id": "20", "url": "https://i.imgur.com/okcUuP4.jpg" }
+      ]
+    },
+    {
+      "id": "14",
+      "name": "家新",
+      "info": "2021",
+      "category": "life, event",
+      "url": "https://i.imgur.com/KYcpFlN.jpeg",
+      "photos": [
+        {
+          "id": "5",
+          "url": "https://i.imgur.com/gexz9ft.jpg"
+        },
+        {
+          "id": "1",
+          "url": "https://i.imgur.com/ftSx5DC.jpg"
+        },
+        { "id": "2", "url": "https://i.imgur.com/HLB2INC.jpg" },
+        {
+          "id": "4",
+          "url": "https://i.imgur.com/pGm1NUZ.jpg"
+        },
+        {
+          "id": "9",
+          "url": "https://i.imgur.com/3uNGQtM.jpg"
+        },
+        {
+          "id": "6",
+          "url": "https://i.imgur.com/ctlbhyt.jpg"
+        },
+        {
+          "id": "7",
+          "url": "https://i.imgur.com/3qPzCZE.jpg"
+        },
+        {
+          "id": "10",
+          "url": "https://i.imgur.com/I1dzBBb.jpg"
+        },
+        {
+          "id": "8",
+          "url": "https://i.imgur.com/Jlh6CPU.jpg"
+        },
+        { "id": "3", "url": "https://i.imgur.com/14itjQv.jpg" },
+        { "id": "12", "url": "https://i.imgur.com/L9X6gUT.jpg" },
+        { "id": "11", "url": "https://i.imgur.com/l2tlH4C.jpg" },
+        { "id": "13", "url": "https://i.imgur.com/PdAf9kz.jpg" },
+        { "id": "14", "url": "https://i.imgur.com/oc4uHaI.jpg" },
+        { "id": "15", "url": "https://i.imgur.com/kY4lAO8.jpg" },
+        { "id": "16", "url": "https://i.imgur.com/1kaP1nO.jpg" },
+        { "id": "17", "url": "https://i.imgur.com/7puJXh4.jpg" },
+        { "id": "18", "url": "https://i.imgur.com/XUWAZcp.jpg" },
+        { "id": "19", "url": "https://i.imgur.com/RaACDK2.jpg" },
+        { "id": "20", "url": "https://i.imgur.com/pN4veGO.jpg" },
+        { "id": "21", "url": "https://i.imgur.com/7Ur9Y4U.jpg" },
+        { "id": "22", "url": "https://i.imgur.com/HpX47D0.jpg" },
+        { "id": "23", "url": "https://i.imgur.com/4EPeOfb.jpg" }
       ]
     }
   ]

@@ -1,45 +1,23 @@
 <template>
-  <div class="portfolio">
+  <div class="design">
     <el-row :gutter="60">
-      <div
-        class="title"
-        style="
-          font-size: 20px !important;
-          margin: 60px auto 10px auto !important;
-          font-weight: normal !important;
-          letter-spacing: 2px;
-          @media screen and (max-width: 992px) {
-            /* 手機版 */
-            top: 150px !important;
-            font-size: 20px;
-          }
-        "
-      >
-        <span>黃佳</span> Jia Huang
-      </div>
-      <p class="title" style="letter-spacing: 2px; margin-bottom: 60px">
-        Photography
-      </p>
-      <div class="btns">
-        <el-button @click="showall">All</el-button>
-        <el-button @click="handleClick(1)">Wedding</el-button>
-        <el-button @click="handleClick(2)">Portrait</el-button>
-        <el-button @click="handleClick(3)">Landscape</el-button>
-        <el-button @click="handleClick(4)">Life</el-button>
-        <el-button @click="handleClick(5)">Event</el-button>
-      </div>
       <el-col :span="isMobile ? 20 : 0" :offset="isMobile ? 2 : 0">
+        <h2 class="title">Design Work</h2>
         <!-- 在手机屏幕上显示一列 -->
         <transition-group name="fade">
           <div
             class="item"
             v-for="item in list"
             :key="item.id"
-            v-on:click="$router.push(`/album/${item.id}`)"
+            v-on:click="picClick(item.id)"
           >
-            <el-image style="width: 100%; height: auto" :src="item.url" />
-            <p class="name">{{ item.name }}</p>
-            <p class="info">{{ item.info }}</p>
+            <el-image
+              style="width: 100%; height: auto"
+              :src="item.url"
+              :preview-src-list="[item.url]"
+            />
+            <!-- <p class="name">{{ item.name }}</p> -->
+            <!-- <p class="info">{{ item.info }}</p> -->
           </div>
         </transition-group>
       </el-col>
@@ -50,11 +28,15 @@
             class="item"
             v-for="item in oddList"
             :key="item.id"
-            v-on:click="$router.push(`/album/${item.id}`)"
+            v-on:click="picClick(item.id)"
           >
-            <el-image style="width: 100%; height: auto" :src="item.url" />
-            <p class="name">{{ item.name }}</p>
-            <p class="info">{{ item.info }}</p>
+            <el-image
+              style="width: 100%; height: auto"
+              :src="item.url"
+              :preview-src-list="[item.url]"
+            />
+            <!-- <p class="name">{{ item.name }}</p> -->
+            <!-- <p class="info">{{ item.info }}</p> -->
           </div>
         </transition-group>
       </el-col>
@@ -64,11 +46,15 @@
             class="item"
             v-for="item in evenList"
             :key="item.id"
-            v-on:click="$router.push(`/album/${item.id}`)"
+            v-on:click="picClick(item.id)"
           >
-            <el-image style="width: 100%; height: auto" :src="item.url" />
-            <p class="name">{{ item.name }}</p>
-            <p class="info">{{ item.info }}</p>
+            <el-image
+              style="width: 100%; height: auto"
+              :src="item.url"
+              :preview-src-list="[item.url]"
+            />
+            <!-- <p class="name">{{ item.name }}</p> -->
+            <!-- <p class="info">{{ item.info }}</p> -->
           </div>
         </transition-group>
       </el-col>
@@ -78,10 +64,10 @@
 </template>
 
 <script>
-import { getAllAlbumAPI } from "@/api/portfolio";
+import { getAllDesignAPI } from "@/api/portfolio";
 
 export default {
-  name: "AlbumPage",
+  name: "DesignPage",
   data() {
     return {
       isMobile: false,
@@ -98,10 +84,11 @@ export default {
     },
   },
   async created() {
-    const res = await getAllAlbumAPI();
+    const res = await getAllDesignAPI();
     console.log(res);
-    this.originalList = res;
-    this.list = [...res];
+    // this.originalList = res.data;
+    this.list = res.data;
+    // console.log(this.list);
   },
   mounted() {
     this.checkScreenWidth();
@@ -114,32 +101,23 @@ export default {
     checkScreenWidth() {
       this.isMobile = window.innerWidth < 992; // 设置手机屏幕的阈值，例如768px
     },
-    handleClick(id) {
-      this.list = [...this.originalList];
-      const map = {
-        1: "wedding",
-        2: "portrait",
-        3: "landscape",
-        4: "life",
-        5: "event",
-      };
-      const category = map[id];
-      this.list = this.originalList.filter((ele) =>
-        ele.category.includes(category)
-      );
-    },
-    showall() {
-      this.list = this.originalList;
+    picClick(id) {
+      console.log(id);
     },
   },
 };
 </script>
 
 <style>
-.portfolio {
+.design {
   margin-top: 100px;
   margin-bottom: 200px;
   text-align: center;
+  .title {
+    font-weight: 100;
+    font-size: 18px;
+    padding: 30px 0;
+  }
   .btns {
     margin-bottom: 60px;
     display: flex;
@@ -152,10 +130,11 @@ export default {
       flex-basis: calc(10% - 10px); /* 設置每個按鈕的寬度，減去間距 */
       margin: 5px; /* 按鈕間的間距 */
     }
-    @media screen and (max-width: 460px) {
-      .el-button {
-        flex-basis: calc(50% - 10px);
-      }
+  }
+  @media screen and (max-width: 460px) {
+    margin-top: 70px;
+    .btns .el-button {
+      flex-basis: calc(50% - 10px);
     }
   }
   .el-row {

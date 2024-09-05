@@ -8,11 +8,12 @@ const routes = [
     path: "/",
     component: () => import("@/views/layout/layout.vue"),
     children: [
-      { path: "", redirect: "/portfolio" },
+      { path: "", redirect: "/photography" },
       {
-        path: "/portfolio",
-        component: () => import("@/views/portfolio.vue"),
+        path: "/photography",
+        component: () => import("@/views/photography.vue"),
       },
+      { path: "/design", component: () => import("@/views/design.vue") },
       { path: "/about", component: () => import("@/views/about.vue") },
       {
         path: "/album/:id",

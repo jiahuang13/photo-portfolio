@@ -13,3 +13,10 @@ export const getAlbumAPI = (id) => {
     url: `/album/${id}`,
   });
 };
+
+// 獲取設計
+export const getAllDesignAPI = () => {
+  return request({
+    url: "/design",
+  });
+};

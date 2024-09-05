@@ -48,9 +48,15 @@
         </div>
       </el-col>
       <el-link
-        class="arrow"
-        @click="nextProject"
-        v-if="+this.$route.params.id < 10"
+        class="previousProject"
+        @click="nextProject(-1)"
+        v-if="+this.$route.params.id > 1"
+        ><i class="el-icon-back"></i> Previous Project
+      </el-link>
+      <el-link
+        class="nextProject"
+        @click="nextProject(1)"
+        v-if="+this.$route.params.id < albumcount"
         >Next Project <i class="el-icon-right"></i>
       </el-link>
     </el-row>
@@ -59,7 +65,8 @@
 </template>
 
 <script>
-import { getAlbumAPI } from "@/api/portfolio";
+import { getAlbumAPI, getAllAlbumAPI } from "@/api/portfolio";
+// import router from "@/router";
 
 export default {
   name: "AlbumPage",
@@ -69,6 +76,7 @@ export default {
       list: [],
       albumname: "",
       albuminfo: "",
+      albumcount: "",
       loading: true,
     };
   },
@@ -82,16 +90,20 @@ export default {
   },
   async created() {
     const res = await getAlbumAPI(this.$route.params.id);
-    this.list = [...res.photos];
-    this.albumname = res.name;
-    this.albuminfo = res.info;
+    // console.log(res.data);
+    this.list = [...res.data];
+    const resAll = await getAllAlbumAPI();
+    const data = resAll.data[+this.$route.params.id - 1];
+    this.albumname = data.name;
+    this.albuminfo = data.info;
+    this.albumcount = resAll.data.length;
   },
   mounted() {
     this.checkScreenWidth();
     window.addEventListener("resize", this.checkScreenWidth);
     setTimeout(() => {
       this.loading = false;
-    }, 2500);
+    }, 2000);
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.checkScreenWidth);
@@ -100,14 +112,18 @@ export default {
     checkScreenWidth() {
       this.isMobile = window.innerWidth < 768; // 设置手机屏幕的阈值，例如768px
     },
-    nextProject() {
-      const newid = +this.$route.params.id + 1;
-      // this.$router.push({ name: "album", params: { id: newid } });
-      this.$router.push(`album/${newid}`);
-      location.reload();
+    nextProject(step) {
+      const newid = +this.$route.params.id + step;
+      this.$router.push(`/album/${newid}`);
     },
     picClick(id) {
       console.log(id);
+    },
+  },
+  watch: {
+    $route() {
+      // 路由发生变化页面刷新
+      window.location.reload();
     },
   },
 };
@@ -154,9 +170,9 @@ export default {
         rgba(0, 0, 0, 0.098) 0px 10px 10px;
     }
   }
-  .arrow {
+  .nextProject {
     position: absolute;
-    bottom: -50px;
+    bottom: -30px;
     right: 50px;
     display: flex;
     justify-content: center;
@@ -166,6 +182,16 @@ export default {
     svg {
       transform: rotate(180deg);
     }
+  }
+  .previousProject {
+    position: absolute;
+    bottom: -30px;
+    left: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(50, 130, 63);
+    font-size: 20px;
   }
 }
 </style>

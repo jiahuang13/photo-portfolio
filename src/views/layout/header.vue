@@ -41,6 +41,7 @@
           background-color="#fff"
           text-color="#32823f"
           active-text-color="#92d99e"
+          :default-active="activeIndex"
           style="
             border-color: transparent;
             display: flex;
@@ -50,9 +51,12 @@
         >
           <!-- 导航栏内容 -->
           <el-menu-item index="1" @click.native="$router.push('/')"
-            >Portfolio</el-menu-item
+            >Photography</el-menu-item
           >
-          <el-menu-item index="2" @click.native="$router.push('/about')"
+          <el-menu-item index="2" @click.native="$router.push('/design')"
+            >Design</el-menu-item
+          >
+          <el-menu-item index="3" @click.native="$router.push('/about')"
             >About</el-menu-item
           >
         </el-menu>
@@ -61,7 +65,7 @@
       <!-- 在小屏幕上显示漢堡選單 -->
       <el-col :span="hamburgerVisible ? 24 : 0" class="phone-navbar">
         <!-- logo -->
-        <h1 class="logo">J.Huang</h1>
+        <h1 class="logo" @click="$router.push('/')">J.Huang</h1>
         <!-- 漢堡選單按钮 -->
         <el-button type="text" @click="toggleDrawer" class="burger"
           ><!-- 内联 SVG -->
@@ -79,14 +83,17 @@
         <!-- 漢堡選單抽屉 -->
         <el-drawer :visible.sync="drawerVisible" direction="rtl" size="100%">
           <!-- 漢堡選單内容 -->
-          <el-menu>
+          <el-menu :default-active="activeIndex">
             <el-menu-item index="1" @click.native="handleClick('/')"
-              >Portfolio</el-menu-item
+              >Photography</el-menu-item
             >
-            <el-menu-item index="2" @click.native="handleClick('/about')"
+            <el-menu-item index="2" @click.native="handleClick('/design')"
+              >Design</el-menu-item
+            >
+            <el-menu-item index="3" @click.native="handleClick('/about')"
               >About</el-menu-item
             >
-            <el-menu-item index="3"
+            <el-menu-item index="4"
               ><a
                 class="ig"
                 href="https://www.instagram.com/pslms16_6/"
@@ -121,12 +128,28 @@ export default {
       navbarVisible: true,
       hamburgerVisible: false,
       drawerVisible: false,
+      activeIndex: "1",
     };
+  },
+  watch: {
+    $route(to, from) {
+      // 清空舊的高亮，防止未更新的情況
+      this.activeIndex = null;
+
+      console.log(from.path, to.path);
+      const map = {
+        "/photography": "1",
+        "/design": "2",
+        "/about": "3",
+      };
+      this.activeIndex = map[to.path] || "1";
+    },
   },
   mounted() {
     // 监听窗口大小变化，根据窗口宽度切换导航栏和漢堡選單的显示状态
     window.addEventListener("resize", this.handleResize);
     this.handleResize();
+    console.log(this.$route.path);
   },
   beforeUnmount() {
     // 组件销毁前移除窗口大小变化的监听器
