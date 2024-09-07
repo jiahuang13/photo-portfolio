@@ -2,7 +2,7 @@
   <div>
     <myheader></myheader>
     <router-view></router-view>
-    <p>© 2024 by Jia Huang.</p>
+    <p>© 2024 by Jia Huang</p>
   </div>
 </template>
 

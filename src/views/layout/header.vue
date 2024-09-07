@@ -219,9 +219,14 @@ export default {
     }
   }
   .phone-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-height: 80px;
     width: 100vw;
-    background-color: #fff; /* 添加背景颜色 */
-    z-index: 10; /* 设置合适的 z-index 值 */
+    background-color: #fff !important;
+    z-index: 200;
+    box-shadow: 0 4px 5px -3px rgba(128, 128, 128, 0.415);
     .logo {
       position: absolute;
       top: 10px;

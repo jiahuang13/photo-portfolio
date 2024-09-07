@@ -1,7 +1,7 @@
 <template>
   <div class="design">
     <el-row :gutter="40">
-      <el-col :span="isMobile ? 20 : 0" :offset="isMobile ? 2 : 0">
+      <el-col :span="isMobile ? 22 : 0" :offset="isMobile ? 1 : 0">
         <h2 class="title">Design Work</h2>
         <!-- 在手机屏幕上显示一列 -->
         <div v-loading="loading">

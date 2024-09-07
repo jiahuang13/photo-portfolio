@@ -106,7 +106,7 @@ export default {
     window.addEventListener("resize", this.checkScreenWidth);
     setTimeout(() => {
       this.loading = false;
-    }, 1000);
+    }, 2000);
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.checkScreenWidth);
