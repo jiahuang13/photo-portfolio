@@ -1,16 +1,13 @@
 <template>
   <div class="about">
-    <el-row :gutter="120">
-      <h1 class="title"><span>黃佳</span> Jia Huang</h1>
-      <p class="title">Photography</p>
-      <el-col :span="isMobile ? 23 : 0" :offset="isMobile ? 0.5 : 0">
+    <el-row :gutter="20">
+      <el-col :span="isMobile ? 22 : 0" :offset="isMobile ? 1 : 0">
         <!-- 在手机屏幕上显示一列 -->
         <transition name="fade">
           <div class="paragraph">
             <h2>About Me</h2>
             <p>
-              1997年出生，台南人，金牛座，育有一貓。
-              <br />各式拍攝合作委託歡迎內洽。
+              1997年出生，台南人，金牛座，育有一貓。各式拍攝合作委託歡迎內洽。
             </p>
             <p>
               Born in 1997, a native of Tainan, Taiwan, under the zodiac sign of
@@ -38,15 +35,19 @@
                 ></path>
               </svg>
             </a>
-            <el-image
-              style="width: 100%; height: auto"
-              src="https://i.imgur.com/psyhJi5.jpeg"
-            />
+            <div v-loading="loading">
+              <el-image
+                style="width: 100%; height: auto"
+                src="https://i.imgur.com/psyhJi5.jpeg"
+              />
+            </div>
           </div>
         </transition>
       </el-col>
       <!-- 在大屏幕上显示两列 -->
       <el-col :span="isMobile ? 0 : 11" :offset="isMobile ? 0 : 1">
+        <h1 class="title"><span>黃佳</span> Jia Huang</h1>
+
         <transition name="fade">
           <div class="paragraph">
             <h2>About Me</h2>
@@ -86,7 +87,7 @@
       </el-col>
       <el-col :span="isMobile ? 0 : 10">
         <transition name="fade">
-          <div class="paragraph">
+          <div class="paragraph" v-loading="loading">
             <el-image
               style="width: 100%; height: auto"
               src="https://i.imgur.com/psyhJi5.jpeg"
@@ -104,11 +105,15 @@ export default {
   data() {
     return {
       isMobile: false,
+      loading: true,
     };
   },
   mounted() {
     this.checkScreenWidth();
     window.addEventListener("resize", this.checkScreenWidth);
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.checkScreenWidth);
@@ -136,13 +141,13 @@ export default {
   h1.title {
     /* font-weight: 100; */
     font-size: 20px;
-    margin: 100px auto 10px;
+    margin: 60px auto 80px;
     font-weight: normal;
     letter-spacing: 2px;
     line-height: 30px;
     @media screen and (max-width: 992px) {
       /* 手機版 */
-      top: 150px;
+      margin: 20px auto 40px;
     }
   }
   p.title {

@@ -1,6 +1,6 @@
 <template>
   <div class="album">
-    <el-row :gutter="20">
+    <el-row :gutter="40">
       <h1 class="title">{{ albumname }}</h1>
       <p class="title">{{ albuminfo }}</p>
       <el-col :span="isMobile ? 22 : 0" :offset="isMobile ? 1 : 0">
@@ -48,13 +48,13 @@
         </div>
       </el-col>
       <el-link
-        class="previousProject"
+        class="previousProject project"
         @click="nextProject(-1)"
         v-if="+this.$route.params.id > 1"
         ><i class="el-icon-back"></i> Previous Project
       </el-link>
       <el-link
-        class="nextProject"
+        class="nextProject project"
         @click="nextProject(1)"
         v-if="+this.$route.params.id < albumcount"
         >Next Project <i class="el-icon-right"></i>
@@ -140,7 +140,7 @@ export default {
     font-weight: normal;
     @media screen and (max-width: 768px) {
       /* 手機版 */
-      top: 150px;
+      margin-top: 20px;
     }
   }
   p.title {
@@ -161,7 +161,7 @@ export default {
   .item {
     width: 100%;
     .el-image {
-      margin: 5px 0;
+      margin-bottom: 20px;
       transition: 0.5s all; /* 添加过渡效果 */
     }
     .el-image:hover {
@@ -170,28 +170,37 @@ export default {
         rgba(0, 0, 0, 0.098) 0px 10px 10px;
     }
   }
-  .nextProject {
+  .project {
     position: absolute;
-    bottom: -30px;
-    right: 50px;
+    bottom: -70px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: rgb(50, 130, 63);
     font-size: 20px;
+    @media screen and (max-width: 768px) {
+      /* 手機版 */
+      font-size: 16px;
+    }
+  }
+  .nextProject {
+    right: 50px;
     svg {
       transform: rotate(180deg);
     }
+    @media screen and (max-width: 768px) {
+      /* 手機版 */
+      font-size: 16px;
+      right: 20px;
+    }
   }
   .previousProject {
-    position: absolute;
-    bottom: -30px;
     left: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: rgb(50, 130, 63);
-    font-size: 20px;
+    @media screen and (max-width: 768px) {
+      /* 手機版 */
+      font-size: 16px;
+      left: 20px;
+    }
   }
 }
 </style>

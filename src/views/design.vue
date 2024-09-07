@@ -1,62 +1,68 @@
 <template>
   <div class="design">
-    <el-row :gutter="60">
+    <el-row :gutter="40">
       <el-col :span="isMobile ? 20 : 0" :offset="isMobile ? 2 : 0">
         <h2 class="title">Design Work</h2>
         <!-- 在手机屏幕上显示一列 -->
-        <transition-group name="fade">
-          <div
-            class="item"
-            v-for="item in list"
-            :key="item.id"
-            v-on:click="picClick(item.id)"
-          >
-            <el-image
-              style="width: 100%; height: auto"
-              :src="item.url"
-              :preview-src-list="[item.url]"
-            />
-            <!-- <p class="name">{{ item.name }}</p> -->
-            <!-- <p class="info">{{ item.info }}</p> -->
-          </div>
-        </transition-group>
+        <div v-loading="loading">
+          <transition-group name="fade">
+            <div
+              class="item"
+              v-for="item in list"
+              :key="item.id"
+              v-on:click="picClick(item.id)"
+            >
+              <el-image
+                style="width: 100%; height: auto"
+                :src="item.url"
+                :preview-src-list="[item.url]"
+              />
+              <!-- <p class="name">{{ item.name }}</p> -->
+              <!-- <p class="info">{{ item.info }}</p> -->
+            </div>
+          </transition-group>
+        </div>
       </el-col>
       <!-- 在大屏幕上显示两列 -->
-      <el-col :span="isMobile ? 0 : 8" :offset="isMobile ? 0 : 4">
-        <transition-group name="fade">
-          <div
-            class="item"
-            v-for="item in oddList"
-            :key="item.id"
-            v-on:click="picClick(item.id)"
-          >
-            <el-image
-              style="width: 100%; height: auto"
-              :src="item.url"
-              :preview-src-list="[item.url]"
-            />
-            <!-- <p class="name">{{ item.name }}</p> -->
-            <!-- <p class="info">{{ item.info }}</p> -->
-          </div>
-        </transition-group>
+      <el-col :span="isMobile ? 0 : 10" :offset="isMobile ? 0 : 2">
+        <div v-loading="loading">
+          <transition-group name="fade">
+            <div
+              class="item"
+              v-for="item in oddList"
+              :key="item.id"
+              v-on:click="picClick(item.id)"
+            >
+              <el-image
+                style="width: 100%; height: auto"
+                :src="item.url"
+                :preview-src-list="[item.url]"
+              />
+              <!-- <p class="name">{{ item.name }}</p> -->
+              <!-- <p class="info">{{ item.info }}</p> -->
+            </div>
+          </transition-group>
+        </div>
       </el-col>
-      <el-col :span="isMobile ? 0 : 8">
-        <transition-group name="fade">
-          <div
-            class="item"
-            v-for="item in evenList"
-            :key="item.id"
-            v-on:click="picClick(item.id)"
-          >
-            <el-image
-              style="width: 100%; height: auto"
-              :src="item.url"
-              :preview-src-list="[item.url]"
-            />
-            <!-- <p class="name">{{ item.name }}</p> -->
-            <!-- <p class="info">{{ item.info }}</p> -->
-          </div>
-        </transition-group>
+      <el-col :span="isMobile ? 0 : 10">
+        <div v-loading="loading">
+          <transition-group name="fade">
+            <div
+              class="item"
+              v-for="item in evenList"
+              :key="item.id"
+              v-on:click="picClick(item.id)"
+            >
+              <el-image
+                style="width: 100%; height: auto"
+                :src="item.url"
+                :preview-src-list="[item.url]"
+              />
+              <!-- <p class="name">{{ item.name }}</p> -->
+              <!-- <p class="info">{{ item.info }}</p> -->
+            </div>
+          </transition-group>
+        </div>
       </el-col>
     </el-row>
     <el-backtop :bottom="50" :visibility-height="50"></el-backtop>
@@ -73,6 +79,7 @@ export default {
       isMobile: false,
       list: [],
       originalList: [],
+      loading: true,
     };
   },
   computed: {
@@ -93,6 +100,9 @@ export default {
   mounted() {
     this.checkScreenWidth();
     window.addEventListener("resize", this.checkScreenWidth);
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
   },
   beforeUnmount() {
     window.removeEventListener("resize", this.checkScreenWidth);
@@ -171,7 +181,7 @@ export default {
   .item {
     width: 100%;
     .el-image {
-      margin: 5px 0;
+      margin-bottom: 20px;
       transition: 0.5s all; /* 添加过渡效果 */
     }
     .el-image:hover {

@@ -1,9 +1,9 @@
 import axios from "axios";
-import Toast from "element-ui";
+// import Toast from "element-ui";
 
 // 創建實例
 const instance = axios.create({
-  baseURL: "http://localhost:3007/",
+  baseURL: "https://www.server.jiahuangtw.site/",
   timeout: 5000,
 });
 
@@ -19,7 +19,7 @@ instance.interceptors.response.use(
     // 对响应错误做点什么
     // console.log(error)
     console.error("請求錯誤攔截器:", error);
-    Toast.fail(error.response.data.message);
+    // Toast.fail(error.response.data.message);
     return Promise.reject(error);
   }
 );
