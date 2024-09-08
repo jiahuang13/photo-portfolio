@@ -1,6 +1,6 @@
 <template>
   <div class="design">
-    <el-row :gutter="40">
+    <el-row :gutter="isMobile ? 0 : 40">
       <el-col :span="isMobile ? 22 : 0" :offset="isMobile ? 1 : 0">
         <h2 class="title">Design Work</h2>
         <!-- 在手机屏幕上显示一列 -->
@@ -123,6 +123,7 @@ export default {
   margin-top: 100px;
   margin-bottom: 200px;
   text-align: center;
+  overflow-x: hidden;
   .title {
     font-weight: 100;
     font-size: 18px;

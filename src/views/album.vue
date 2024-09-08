@@ -1,6 +1,6 @@
 <template>
   <div class="album">
-    <el-row :gutter="40">
+    <el-row :gutter="isMobile ? 0 : 40">
       <h1 class="title">{{ albumname }}</h1>
       <p class="title">{{ albuminfo }}</p>
       <el-col :span="isMobile ? 22 : 0" :offset="isMobile ? 1 : 0">
@@ -133,6 +133,7 @@ export default {
 .album {
   margin-top: 100px;
   margin-bottom: 200px;
+  max-width: 100% !important;
   h1.title {
     /* font-weight: 100; */
     font-size: 20px;

@@ -28,6 +28,7 @@ const router = new VueRouter({
   mode: "hash",
   base: process.env.BASE_URL,
   routes,
+  scrollBehavior: () => ({ y: 0 }),
 });
 
 export default router;

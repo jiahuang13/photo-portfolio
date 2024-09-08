@@ -219,14 +219,17 @@ export default {
     }
   }
   .phone-navbar {
-    position: fixed;
+    width: 100%;
+    background-color: #fff; /* 添加背景颜色 */
+    z-index: 10; /* 设置合适的 z-index 值 */
+    /* position: fixed;
     top: 0;
     left: 0;
     min-height: 80px;
     width: 100vw;
     background-color: #fff !important;
-    z-index: 200;
-    box-shadow: 0 4px 5px -3px rgba(128, 128, 128, 0.415);
+    z-index: 10;
+    box-shadow: 0 4px 5px -3px rgba(128, 128, 128, 0.415); */
     .logo {
       position: absolute;
       top: 10px;
@@ -240,6 +243,18 @@ export default {
       top: 20px;
       right: 20px;
     }
+    /* .el-drawer__wrapper {
+      z-index: 3000 !important;
+      position: fixed !important;
+    }
+    .el-drawer {
+      z-index: 9999 !important;
+    }
+    .v-modal {
+      pointer-events: none !important;
+      z-index: 1000 !important;
+    } 
+    */
   }
 }
 </style>
